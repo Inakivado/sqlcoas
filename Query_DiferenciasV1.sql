@@ -1,9 +1,8 @@
-
-select  c.* from
-        
+-- inicio query
+select  a.* from        
 (SELECT cdciagru,cdsinies,cdnumpol,ctvrspol,cdobjtp,
 cdconrec,tcramdgs,tcsubram,cobertura,tccdmone,tctipres,
-sum(IMIMDE100) as imde100_coas,
+sum(IMIMDE100) as imde100_coas ,
 sum(IMGATO100) as imga100_coas ,
 sum(IMSALV100) as imsa100_coas ,
 sum(IMRECU100) as imre100_coas ,
@@ -33,22 +32,6 @@ sum(IMIVACOA)  as imvacoa_cont
 FROM  coaseguro.aotcont
 GROUP BY cdciagru,cdsinies,cdnumpol,ctvrspol,cdobjtp,cdconrec,tcramdgs,tcsubram,cobertura,tccdmone,tctipres
 ) b
-inner join coaseguro.aotcont c
-on 
-(a.cdciagru = c.cdciagru 
-and a.cdsinies = c.cdsinies
-and a.cdnumpol = c.cdnumpol
-and a.ctvrspol = c.ctvrspol
-and a.cdobjtp  = c.cdobjtp
-and a.cdconrec = c.cdconrec
-and a.tcramdgs = c.tcramdgs
-and a.tcsubram = c.tcsubram
-and a.cobertura = c.cobertura
-and a.tccdmone = c.tccdmone
-and a.tctipres = c.tctipres
-) 
-
-
 where 
 	a.cdciagru = b.cdciagru 
 and a.cdsinies = b.cdsinies
@@ -72,3 +55,5 @@ or imsacoa_coas <> imsacoa_cont
 or imrecoa_coas <> imrecoa_cont
 or imvacoa_coas <> imvacoa_cont)
 ;
+-- comentario
+
